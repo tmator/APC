@@ -162,60 +162,60 @@ Si vous vous intéressez à l'utilisation d'APC, assurez vous de suivre les inst
 
 ## Sommaire de la documentation
 
-1. Fabriquer et configurer sa carte APC
+1. Fabriquer et configurer sa carte APC  
 1.1. [La carte APC](https://github.com/AmokSolderer/APC/blob/master/DOC-FR/APC_board.md) - Comment en acquérir une et la préparer  
-1.2. [Installer le logiciel](https://github.com/AmokSolderer/APC/blob/master/DOC-FR/Upload_SW.md) - Comment programmer l'Arduino DUE
-1.3. [Présentation basique](https://github.com/AmokSolderer/APC/blob/master/DOC-FR/Prepare.md) -Matériel et cables requis 
+1.2. [Installer le logiciel](https://github.com/AmokSolderer/APC/blob/master/DOC-FR/Upload_SW.md) - Comment programmer l'Arduino DUE  
+1.3. [Présentation basique](https://github.com/AmokSolderer/APC/blob/master/DOC-FR/Prepare.md) -Matériel et cables requis  
 1.4. [Effectuer les premiers tests](https://github.com/AmokSolderer/APC/blob/master/DOC-FR/InitialTests.md) - Tester votre carte  
 1.5. [Exécuter un jeu](https://github.com/AmokSolderer/APC/blob/master/DOC-FR/RunGame.md) - Toute les information pour lancer un jeu  
 
 2. Réferences  
-2.1. [Configurer le BaseCode](https://github.com/AmokSolderer/APC/blob/master/DOC/SetUpBC.md) - Utiliser le BaseCode afin de lancer un jeu basique
-2.2. [Outils utiles](https://github.com/AmokSolderer/APC/blob/master/DOC/UsefulSWtools.md) - Outils pour la conversion audio
-2.3. [Paramètres APC](https://github.com/AmokSolderer/APC/blob/master/DOC/Settings.md) - Les paramètres APC et leur utilité
-2.4. [Les schémas APC](https://github.com/AmokSolderer/APC/blob/master/DOC/Hardware/APC_schematics.pdf) - Juste au cas ou vous voulez savoir comment ça fonctionne.
-2.5. [Si quelque chose ne fonctionne pas](https://github.com/AmokSolderer/APC/blob/master/DOC/Problems.md) - Si vous avez un problème, lisez ceci en premier
+2.1. [Configurer le BaseCode](https://github.com/AmokSolderer/APC/blob/master/DOC/SetUpBC.md) - Utiliser le BaseCode afin de lancer un jeu basique  
+2.2. [Outils utiles](https://github.com/AmokSolderer/APC/blob/master/DOC/UsefulSWtools.md) - Outils pour la conversion audio  
+2.3. [Paramètres APC](https://github.com/AmokSolderer/APC/blob/master/DOC/Settings.md) - Les paramètres APC et leur utilité  
+2.4. [Les schémas APC](https://github.com/AmokSolderer/APC/blob/master/DOC/Hardware/APC_schematics.pdf) - Juste au cas ou vous voulez savoir comment ça fonctionne.  
+2.5. [Si quelque chose ne fonctionne pas](https://github.com/AmokSolderer/APC/blob/master/DOC/Problems.md) - Si vous avez un problème, lisez ceci en premier  
 
 3. Ecfire son propre jeu. Vous voulez programmer votre jeu ? Vous voulez coder en C ? Alors, lisez ça.  
 3.1. [Tutoriel pour coder son jeu](https://github.com/AmokSolderer/APC/blob/master/DOC/GameCodeTutorial.md) - Des instruction pas à pas pour écrire votre code de jeu  
-3.2. [Référence de code APC](https://github.com/AmokSolderer/APC/blob/master/DOC/Software/APC_SW_reference.pdf) - Toutes les commandes de l'API d'APC
+3.2. [Référence de code APC](https://github.com/AmokSolderer/APC/blob/master/DOC/Software/APC_SW_reference.pdf) - Toutes les commandes de l'API d'APC  
 
 4. Exécuter PinMame  
-4.1. [Site de Lisy](https://lisy.dev/apc.html) - Site pour télécharger Lisy ainsi que des informations complémentaires
-4.2. [PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMame.md) - Explication du status acuel de PinMame avec APC
+4.1. [Site de Lisy](https://lisy.dev/apc.html) - Site pour télécharger Lisy ainsi que des informations complémentaires  
+4.2. [PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMame.md) - Explication du status acuel de PinMame avec APC  
 4.3. [Tutoriel audio PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMame_howto.md) - Si votre jeu n'est pas encore supporté, vous pouvez changer ça  
-4.4. [Les execptions PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMameExceptions.md) - changez votre jeu mais laissez PinMame faire le plus gros
-4.5. [Liste des jeux PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/lisyminigames.csv) - liste des jeu pinmame avec leur numéro
+4.4. [Les execptions PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMameExceptions.md) - changez votre jeu mais laissez PinMame faire le plus gros  
+4.5. [Liste des jeux PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/lisyminigames.csv) - liste des jeu pinmame avec leur numéro  
 4.6. [Controler Lisy](https://github.com/AmokSolderer/APC/blob/master/DOC/LisyDebug.md) - mettre à jour Lisy et utiliser le mode debug  
-4.7. [Instructions pour extraire les fichiers sons](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMameSounds.md) - extraire les sons et les transofrmer avec Audacity (by Mokopin)
+4.7. [Instructions pour extraire les fichiers sons](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMameSounds.md) - extraire les sons et les transofrmer avec Audacity (by Mokopin)  
 
 5. Utiliser MPF 
 5.1. [MPF et APC](https://www.youtube.com/watch?v=w4Po8OE5Zkw) - Ma prmière vidéo sur MPF  
-5.2. [MPF configuration](https://github.com/AmokSolderer/APC/tree/master/DOC/Software/MPF) - mes fichiers de configuration pour MPF
+5.2. [MPF configuration](https://github.com/AmokSolderer/APC/tree/master/DOC/Software/MPF) - mes fichiers de configuration pour MPF  
 5.3. Lisy et MPF
 
-6.  spécifique APC- cartes d'extensions pour APC
-6.1. [APC LED extension](https://github.com/AmokSolderer/APC/blob/master/DOC/LEDexpBoard.md) - une carte poru controller les nabdeaux de led WS2812
+6.  spécifique APC- cartes d'extensions pour APC  
+6.1. [APC LED extension](https://github.com/AmokSolderer/APC/blob/master/DOC/LEDexpBoard.md) - une carte poru controller les nabdeaux de led WS2812  
 6.2. [APC solenoid extension ](https://github.com/AmokSolderer/APC/blob/master/DOC/SolExpBoard.md) - pour controller des solénoides suplémentaires  
-6.3. [Affichange Alphanumérique pour System 7](https://github.com/AmokSolderer/APC/blob/master/DOC/Sys7Alpha.md) - pour avoir des affichage alphanu sur les machines avant les system 11
+6.3. [Affichange Alphanumérique pour System 7](https://github.com/AmokSolderer/APC/blob/master/DOC/Sys7Alpha.md) - pour avoir des affichage alphanu sur les machines avant les system 11  
 
-7. Hardware aditionnels qui peut être utilisé sans APC - Juste quelques design que j'ai fait
-7.1. [Affichange System 7 LED](https://github.com/AmokSolderer/APC/tree/master/DOC/Hardware/Sys7_Display) - un afficheur LED de remplacement pour les System 7 (numérique seulement)
-7.2. [Affichage System 11a LED](https://github.com/AmokSolderer/APC/tree/master/DOC/Hardware/Sys11a_Display) - un afficheur LED de remplacement pour les System 11a
+7. Hardware aditionnels qui peut être utilisé sans APC - Juste quelques design que j'ai fait  
+7.1. [Affichange System 7 LED](https://github.com/AmokSolderer/APC/tree/master/DOC/Hardware/Sys7_Display) - un afficheur LED de remplacement pour les System 7 (numérique seulement)  
+7.2. [Affichage System 11a LED](https://github.com/AmokSolderer/APC/tree/master/DOC/Hardware/Sys11a_Display) - un afficheur LED de remplacement pour les System 11a  
 
-8. Jeux APC - Des règles de jeux complets fonctonnant nattivement avec APC ou des jeux utilisant PinMame avec quelques règles alternatives
-8.1. [Black Knight](https://github.com/AmokSolderer/APC/blob/master/DOC/BlackKnight.md) - Jeu complet avec des fonctionnalités suplémentaires
-8.2. [Pin Bot](https://github.com/AmokSolderer/APC/blob/master/DOC/Pinbot.md) - Jeu complet avec des fonctionnalités suplémentaires
-8.3. [Comet](https://github.com/AmokSolderer/APC/blob/master/DOC/Comet.md) - Des ajouts au jeu original exécuté par PinMame
+8. Jeux APC - Des règles de jeux complets fonctonnant nattivement avec APC ou des jeux utilisant PinMame avec quelques règles alternatives  
+8.1. [Black Knight](https://github.com/AmokSolderer/APC/blob/master/DOC/BlackKnight.md) - Jeu complet avec des fonctionnalités suplémentaires  
+8.2. [Pin Bot](https://github.com/AmokSolderer/APC/blob/master/DOC/Pinbot.md) - Jeu complet avec des fonctionnalités suplémentaires  
+8.3. [Comet](https://github.com/AmokSolderer/APC/blob/master/DOC/Comet.md) - Des ajouts au jeu original exécuté par PinMame  
 
-9. Vidéos - Pour la génération Youtube (vidéos en Anglais)
-9.1. [Quoi de neuf sur APC3](https://youtu.be/4EgOTJyxMXo) - Donne un aperçu de ce qu'est al carte APC en version 3 et ce qu'elle peut faire
+9. Vidéos - Pour la génération Youtube (vidéos en Anglais)  
+9.1. [Quoi de neuf sur APC3](https://youtu.be/4EgOTJyxMXo) - Donne un aperçu de ce qu'est al carte APC en version 3 et ce qu'elle peut faire  
 9.2. [Lisy, APC et PinMame](https://youtu.be/cXrh-XPqCKw) - Montre l'utilisation de PinMame avec APC  
 9.3. [PinMameExceptions](https://youtu.be/bbfhH_-gMfE) - Qu'est ce que les execptions PinMame et comment elles fonctionnent  
 9.4. [Ajouter une "BallSave" avec PinMameExceptions](https://youtu.be/JbgMa_pn0Lo) - Un autre exemple d'utilisation des exceptions PinMame  
-9.5. [APC MPF](https://youtu.be/w4Po8OE5Zkw) - Une simple démonstration d'APC controllé par MPF
-9.6. [GI LEDs](https://youtu.be/kLWVUdhSwfo) - Montre la carte d'extensuion LED en action
+9.5. [APC MPF](https://youtu.be/w4Po8OE5Zkw) - Une simple démonstration d'APC controllé par MPF  
+9.6. [GI LEDs](https://youtu.be/kLWVUdhSwfo) - Montre la carte d'extensuion LED en action  
 9.7. [Arduino Pinball Controller extension](https://youtu.be/8BnVTpKq-2Y) - Montre aussi la carte d'extensuion LED en action à ses premières versions  
-9.8. [APC Black Knight demo](https://youtu.be/N5ipyHBKzgs) - Ma première vidéo d'APC. Pas vraiment à jour mais montre les bases
-9.9. [Comment utiliser un afficheur numérique](https://youtu.be/2A5Tt9FQ2as) - Coment naviguer dans les menus
-9.10. [Comment paramètre un afficheur 2x16 alphanumerique](https://youtu.be/XqPWbm-HWM8) - Comment trouver le bon paramètre pour sélection le bon afficheur
+9.8. [APC Black Knight demo](https://youtu.be/N5ipyHBKzgs) - Ma première vidéo d'APC. Pas vraiment à jour mais montre les bases  
+9.9. [Comment utiliser un afficheur numérique](https://youtu.be/2A5Tt9FQ2as) - Coment naviguer dans les menus  
+9.10. [Comment paramètre un afficheur 2x16 alphanumerique](https://youtu.be/XqPWbm-HWM8) - Comment trouver le bon paramètre pour sélection le bon afficheur  
