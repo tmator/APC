@@ -21,10 +21,10 @@ Chaque jeu possède son propre fichier de scores et de paramètres sur la carte 
 TT_setList est une liste de paramètres. Elle définie l'affichage du menue de paramètres de ma machine et comment ces paramètres seront gérés. Par exemple le 'God Mode" défini dans le BaseCode (Qui ne sert a rien mais qui est la pour l'exemple). Voici à quoi ressemble cette liste :
 
     struct SettingTopic TT_setList[5] = {{"  GOD   MODE  ",HandleBoolSetting,0,0,0}, // defines the game specific settings
-{" RESET  HIGH  ",TT_ResetHighScores,0,0,0},
-{"RESTOREDEFAULT",RestoreDefaults,0,0,0},
-{"  EXIT SETTNGS",ExitSettings,0,0,0},
-{"",NULL,0,0,0}};
+        {" RESET  HIGH  ",TT_ResetHighScores,0,0,0},
+        {"RESTOREDEFAULT",RestoreDefaults,0,0,0},
+        {"  EXIT SETTNGS",ExitSettings,0,0,0},
+        {"",NULL,0,0,0}};
 
 Ce mode activable par les paramètres est défini en tant ue Booléen (pour plus de détails sur la commande SelSetting regardez dans la documentation de l'API).
 Les paramètres „Restore Defaults“ et „Exit Settings“ sont implicites et le dernier qui contient des zéros sert a signifier la fin de la liste.
@@ -49,9 +49,9 @@ Si vous voulez en savoir plus sur les paramètres systèmes, allez voir APC_setL
 La prochaine étape est de dire au système par ou démarrer le jeu. Comme la plupart des flippers, nous le démarrons en "Attrac Mode", le pointeur correspondant est appelé TT_AttractMode. Pour commencer, je décommente simplement le TT_AttractMode copié à partir du Base Code et le modifie comme ceci:  
 
     void TT_AttractMode() {
- DispRow1 = DisplayUpper;
- DispRow2 = DisplayLower;
- WriteUpper("MY NEW GAME     ");}
+         DispRow1 = DisplayUpper;
+         DispRow2 = DisplayLower;
+         WriteUpper("MY NEW GAME     ");}
 
 La dernière étape de définition est le TT_SolTimes. C'est assez important car cela indique au système quel est le délai d'activation par défaut pour chaque solénoïde en millisecondes.
 Il y a de nombreux types de bobines dans un flipper ainsi que des moteurs, aimant, flasheurs qui sont activé par la carte de pilotage des solénoïdes. Normalement ce temps devrait être défini avant toute activation sans ça vous ne pourrez pas les tester convenablement. Pour commencer je vous propose de mettre la valeur de 30 ms qui ne sera pas suffisant pour un moteur ou un aimant, mais au moins vous ne devriez rien cramer en raison d'un temp d'activation trop long.
@@ -60,8 +60,8 @@ Pour mon Rollergames j'ai mis 100ms pour les flasheurs, 999ms pour les moteurs e
 Maintenant que nous avons terminé de définir notre jeu, nous devons faire en sorte de pouvoir le choisir. Il y a une routine appelée TT_init quand TT_GameDefinition est sélectionnée.
 
     void TT_init() {
-ACselectRelay =  TT_ACselectRelay; // assign the number of the A/C select relay
-GameDefinition = TT_GameDefinition;} // read the game specific settings and highscores
+        ACselectRelay =  TT_ACselectRelay; // assign the number of the A/C select relay
+        GameDefinition = TT_GameDefinition;} // read the game specific settings and highscores
 
 Finalement le nouveau code peut être implémenté dans le programme APC.ino. Pour cela vous devez localiser l'entrée du menu "Active Game" dans APC_SetList.
 
@@ -75,27 +75,27 @@ cela signifie que maintenant "Tutorial" sera listé dans le menu "Active Game" e
 
 La dernière étape est de localiser Init_System2 dans APC.ino ou sont appelé les routines d'initialisation de chaque jeu après que le système ait démarré. Après avoir rajouter le jeux Tutorial le "switch/case" ressemblera à ça :
 
-void Init_System2(byte State) {
-switch(APC_settings[ActiveGame]) { // init calls for all valid games
-case 0:
-BC_init();
-break;
-case 1:
-BK_init();
-break;
-case 2:
-PB_init();
-break;
-case 3:
-USB_init();
-break;
-case 4:
-TT_init();
-break;
-default:
-WriteUpper("NO GAMESELECTD  ");
-while (true) {}
-}
+    void Init_System2(byte State) {
+        switch(APC_settings[ActiveGame]) { // init calls for all valid games
+            case 0:
+                BC_init();
+                break;
+            case 1:
+                BK_init();
+                break;
+            case 2:
+                PB_init();
+                break;
+            case 3:
+                USB_init();
+                break;
+            case 4:
+                TT_init();
+                break;
+            default:
+                WriteUpper("NO GAMESELECTD  ");
+            while (true) {}
+    }
 
 Si vous démarrez votre nouveau jeu, le flipper signalera en premier qu'il n'a pas trouvé de fichier de paramètre ou de score pour le jeu sélectionné et ensuite il affichera "MY FIRST GAME". Il est temps d'ajouter de fonctionnalités à ce jeu.
 
@@ -132,12 +132,12 @@ Notez que toutes les lampes ont la même fréquence de clignotement.
 Avec tout ce que nous avons ajouté, votre programme devrait ressembler à ceci :
 
     void TT_AttractMode() {                          // Attract Mode
-DispRow1 = DisplayUpper;
-DispRow2 = DisplayLower;
-WriteUpper("MY NEW GAME     ");
-LampPattern = LampColumns;                   // point to the standard lamp array
-TurnOnLamp(53);
-AddBlinkLamp(54, 250);}
+        DispRow1 = DisplayUpper;
+        DispRow2 = DisplayLower;
+        WriteUpper("MY NEW GAME     ");
+        LampPattern = LampColumns;                   // point to the standard lamp array
+        TurnOnLamp(53);
+        AddBlinkLamp(54, 250);}
 
 Dans cet exemple la lampe 53 est allumée en continue pendant que la lampe 54 clignote toute les 250ms (4 fois par seconde)
 
@@ -161,24 +161,24 @@ Si un contact est activé, la focntion TT_TestSW sera appelée avec le numéro d
 Pour commencer, nous allons faire fonction les cibles tombantes de mon Rollergames. La fonction de gestion des contacts ressemblera à ça :
 
     void TT_TutorialSW(byte SwitchNo) {
-      switch (SwitchNo) {
-      case 8:                                       // high score reset
-        digitalWrite(Blanking, LOW);                // invoke the blanking
-        break;
-      case 49:
-      case 50:
-      case 51:
-        if (QuerySwitch(49)) {
-          TurnOnLamp(49);}
-        if (QuerySwitch(50)) {
-          TurnOnLamp(50);}
-        if (QuerySwitch(51)) {
-          TurnOnLamp(51);}
-        if (QuerySwitch(49) && QuerySwitch(50) && QuerySwitch(51)) {
-          ActA_BankSol(6);
-          TurnOffLamp(49);
-          TurnOffLamp(50);
-          TurnOffLamp(51);}}}
+        switch (SwitchNo) {
+            case 8:                                       // high score reset
+                digitalWrite(Blanking, LOW);                // invoke the blanking
+                break;
+            case 49:
+            case 50:
+            case 51:
+                if (QuerySwitch(49)) {
+                    TurnOnLamp(49);}
+                if (QuerySwitch(50)) {
+                    TurnOnLamp(50);}
+                if (QuerySwitch(51)) {
+                    TurnOnLamp(51);}
+                if (QuerySwitch(49) && QuerySwitch(50) && QuerySwitch(51)) {
+                    ActA_BankSol(6);
+                    TurnOffLamp(49);
+                    TurnOffLamp(50);
+                    TurnOffLamp(51);}}}
 
 Chaque fois qu'un contacte est activé, la fonction TT_TutorialSW sera appelée avec en paramètre le numéro du contact en question. C'est un bon moyen pour centraliser l'état des contacts dans un switch/case.
 
@@ -239,21 +239,21 @@ Il n'est pas forcément nécessaire d'arrêter un minuteur du coup vous n'avez p
 Jusqu'à maintenant j'ai juste expliqué comment Controller les différents éléments ce qui est nécessaire pour commencer a écrire un code de jeu complet, mais il y a encore pas mal de choses a faire avant que la première balle soit prête à être lancée. Le BaseCode contient tout le nécessaire pour ces actions élémentaires mais indispensable au bon déroulement du jeu. Mettons en place la fonction TT_AttractMode() avec les commandes nécessaire :
 
     void TT_AttractMode() {                               // Attract Mode
-DispRow1 = DisplayUpper;
-DispRow2 = DisplayLower;
-WriteUpper("MY NEW GAME     ");
-LampPattern = LampColumns;                        // point to the standard lamp array
-//TurnOnLamp(53);
-//AddBlinkLamp(54, 250);
+        DispRow1 = DisplayUpper;
+        DispRow2 = DisplayLower;
+        WriteUpper("MY NEW GAME     ");
+        LampPattern = LampColumns;                        // point to the standard lamp array
+        //TurnOnLamp(53);
+        //AddBlinkLamp(54, 250);
         Switch_Pressed = TT_AttractModeSW;
-//Switch_Pressed = TT_TutorialSW;
-//Switch_Released = DummyProcess;}
-digitalWrite(VolumePin,HIGH);                    // set volume to zero
-LampPattern = NoLamps;
-AppByte2 = 0;
-LampReturn = TT_AttractLampCycle;
-ActivateTimer(1000, 0, TT_AttractLampCycle);
-TT_AttractDisplayCycle(0);}
+        //Switch_Pressed = TT_TutorialSW;
+        //Switch_Released = DummyProcess;}
+        digitalWrite(VolumePin,HIGH);                    // set volume to zero
+        LampPattern = NoLamps;
+        AppByte2 = 0;
+        LampReturn = TT_AttractLampCycle;
+        ActivateTimer(1000, 0, TT_AttractLampCycle);
+        TT_AttractDisplayCycle(0);}
 
 La première des commandes que nous avons ajouté sert a couper le son en mettant la sortie VolumePin a l'état haut. Ensuite toutes les lampes sont éteintes en définissant le pointeur LampPattern sur NoLamps. L'étape suivante définie le pointeur LampReturn sur TT_AttractLampCycle qui contrôle les animations des lampes en utilisant la commande ShowLampPatterns pendant l'attrac mode avec un minuteur.
 
@@ -269,15 +269,15 @@ L'exemple ci-dessus allumera la lampe 9 pendant 250 ms avant de passer à la lig
 Pour utiliser ShowLampPattern, la variable globale PatPointer doit pointer vers le tableau de motifs et FlowRepeat spécifie le nombre de répétitions à afficher. Un programme simple pour jouer diverses séquences est présenté ci-dessous
 
     void TT_AttractLampCycle(byte Event) {              // play multiple lamp pattern series
-static byte Phase;
-if (Event == 1) {                               // initial call?
- Phase = 0;}                                   // reset cycle phase
-PatPointer = TT_AttractFlow[Phase].FlowPat;     // set the pointer to the current series
-FlowRepeat = TT_AttractFlow[Phase].Repeat;      // set the repetitions
-Phase++;                                        // increase counter
-if (!TT_AttractFlow[Phase].Repeat) {            // repetitions of next series = 0?
-Phase = 0;}                             // reset counter
-ShowLampPatterns(1);}                           // call the player
+        static byte Phase;
+        if (Event == 1) {                               // initial call?
+             Phase = 0;}                                   // reset cycle phase
+        PatPointer = TT_AttractFlow[Phase].FlowPat;     // set the pointer to the current series
+        FlowRepeat = TT_AttractFlow[Phase].Repeat;      // set the repetitions
+        Phase++;                                        // increase counter
+        if (!TT_AttractFlow[Phase].Repeat) {            // repetitions of next series = 0?
+            Phase = 0;}                             // reset counter
+        ShowLampPatterns(1);}                           // call the player
 
 Voici un autre exemple d'utilisation d'un tableau TT_AttractFlow pour stocker la séquence de motifs à jouer et le nombre de répétitions. En définissant le pointeur LampReturn sur TT_AttractLampCycle, on garantit qu'il sera rappelé lorsque ShowLampPatterns aura terminé la séquence. Ensuite, il doit définir le pointeur sur la séquence suivante et exécuter à nouveau ShowLampPatterns. Afin de pouvoir arrêter les animations des lampes, vous pouvez soit ajouter une fonctionnalité d'arrêt à TT_AttractLampCycle, soit appeler ShowLampPatterns(0) en utilisant zéro comme signal pour l'arrêt.
 
@@ -285,55 +285,55 @@ Voici un autre exemple d'utilisation d'un tableau TT_AttractFlow pour stocker la
 Habituellement pendant l'Attrac mode on affiche le nom du flipper, le score de la dernière partie et les HighScores.
 
     void TT_AttractDisplayCycle(byte Step) {
-TT_CheckForLockedBalls(0);
-switch (Step) {
-case 0:
-WriteUpper2("THE APC TUTORIAL");
-ActivateTimer(50, 0, ScrollUpper);
-WriteLower2("                ");
-ActivateTimer(1000, 0, ScrollLower2);
-if (NoPlayers) {                             // if there were no games before skip the next step
-Step++;}
-else {
-Step = 2;}
-break;
-case 1:
-WriteUpper2("                ");             // erase display
-WriteLower2("                ");
-for (i=1; i<=NoPlayers; i++) {               // display the points of all active players
-ShowNumber(8*i-1, Points[i]);}
-ActivateTimer(50, 0, ScrollUpper);
-ActivateTimer(900, 0, ScrollLower2);
-Step++;
-break;
-case 2:                                             // Show highscores
-WriteUpper2("1>              ");
-WriteLower2("2>              ");
-for (i=0; i<3; i++) {
-*(DisplayUpper2+8+2*i) = DispPattern1[(HallOfFame.Initials[i]-32)*2];
-*(DisplayUpper2+8+2*i+1) = DispPattern1[(HallOfFame.Initials[i]-32)*2+1];
-*(DisplayLower2+8+2*i) = DispPattern2[(HallOfFame.Initials[3+i]-32)*2];
-*(DisplayLower2+8+2*i+1) = DispPattern2[(HallOfFame.Initials[3+i]-32)*2+1];}
-ShowNumber(15, HallOfFame.Scores[0]);
-ShowNumber(31, HallOfFame.Scores[1]);
-ActivateTimer(50, 0, ScrollUpper);
-ActivateTimer(900, 0, ScrollLower2);
-Step++;
-break;
-case 3:
-WriteUpper2("3>              ");
-WriteLower2("4>              ");
-for (i=0; i<3; i++) {
-*(DisplayUpper2+8+2*i) = DispPattern1[(HallOfFame.Initials[6+i]-32)*2];
-*(DisplayUpper2+8+2*i+1) = DispPattern1[(HallOfFame.Initials[6+i]-32)*2+1];
-*(DisplayLower2+8+2*i) = DispPattern2[(HallOfFame.Initials[9+i]-32)*2];
-*(DisplayLower2+8+2*i+1) = DispPattern2[(HallOfFame.Initials[9+i]-32)*2+1];}
-ShowNumber(15, HallOfFame.Scores[2]);
-ShowNumber(31, HallOfFame.Scores[3]);
-ActivateTimer(50, 0, ScrollUpper);
-ActivateTimer(900, 0, ScrollLower2);
-Step = 0;}
-ActivateTimer(4000, Step, TT_AttractDisplayCycle);}
+        TT_CheckForLockedBalls(0);
+        switch (Step) {
+            case 0:
+                WriteUpper2("THE APC TUTORIAL");
+                ActivateTimer(50, 0, ScrollUpper);
+                WriteLower2("                ");
+                ActivateTimer(1000, 0, ScrollLower2);
+                if (NoPlayers) {                             // if there were no games before skip the next step
+                    Step++;}
+                else {
+                    Step = 2;}
+                break;
+            case 1:
+                WriteUpper2("                ");             // erase display
+                WriteLower2("                ");
+                for (i=1; i<=NoPlayers; i++) {               // display the points of all active players
+                    ShowNumber(8*i-1, Points[i]);}
+                ActivateTimer(50, 0, ScrollUpper);
+                ActivateTimer(900, 0, ScrollLower2);
+                Step++;
+                break;
+            case 2:                                             // Show highscores
+                WriteUpper2("1>              ");
+                WriteLower2("2>              ");
+                for (i=0; i<3; i++) {
+                    *(DisplayUpper2+8+2*i) = DispPattern1[(HallOfFame.Initials[i]-32)*2];
+                    *(DisplayUpper2+8+2*i+1) = DispPattern1[(HallOfFame.Initials[i]-32)*2+1];
+                    *(DisplayLower2+8+2*i) = DispPattern2[(HallOfFame.Initials[3+i]-32)*2];
+                    *(DisplayLower2+8+2*i+1) = DispPattern2[(HallOfFame.Initials[3+i]-32)*2+1];}
+                ShowNumber(15, HallOfFame.Scores[0]);
+                ShowNumber(31, HallOfFame.Scores[1]);
+                ActivateTimer(50, 0, ScrollUpper);
+                ActivateTimer(900, 0, ScrollLower2);
+                Step++;
+                break;
+            case 3:
+                WriteUpper2("3>              ");
+                WriteLower2("4>              ");
+                for (i=0; i<3; i++) {
+                    *(DisplayUpper2+8+2*i) = DispPattern1[(HallOfFame.Initials[6+i]-32)*2];
+                    *(DisplayUpper2+8+2*i+1) = DispPattern1[(HallOfFame.Initials[6+i]-32)*2+1];
+                    *(DisplayLower2+8+2*i) = DispPattern2[(HallOfFame.Initials[9+i]-32)*2];
+                    *(DisplayLower2+8+2*i+1) = DispPattern2[(HallOfFame.Initials[9+i]-32)*2+1];}
+                    ShowNumber(15, HallOfFame.Scores[2]);
+                    ShowNumber(31, HallOfFame.Scores[3]);
+                    ActivateTimer(50, 0, ScrollUpper);
+                    ActivateTimer(900, 0, ScrollLower2);
+                    Step = 0;}
+                ActivateTimer(4000, Step, TT_AttractDisplayCycle);}
 
 Pour démarrer le cycle d'affichage, la fonction PB_AttractDisplayCycle est appelée une fois depuis l'attrac mode. Ensuite elle peut être considérée comme un processus a part qui met a jour l'affichage toutes les 4 secondes.
 Comme l'identifiant du minuteur n'est pas stocké, le seul moyen de l'arrêter est d'appeler la fonction KillAllTimers() qui tue tous les minuteurs en cours. Ce n'est pas la façon la plus élégante de faire, mais comme l'attrac mode comporte plusieurs processus cela va de soit de tous les tuer quand on le quitte pour lancer une partie.
@@ -349,31 +349,31 @@ Maintenant vous connaissez la procédure pour faire des animations de lampes et 
 qui signifiqe que cette fonction sera appelée quand un contact sera activé. La fonction ressemble à ca :
 
     void TT_AttractModeSW(byte Button) {              // Attract Mode switch behaviour
-switch (Button) {
-case 8:                                       // high score reset
-digitalWrite(Blanking, LOW);          // invoke the blanking
-break;
-case TT_OutholeSwitch:                        // outhole
-ActivateTimer(200, 0, TT_CheckForLockedBalls); // check again in 200ms
-break;
-case 72:                                      // Service Mode
-BlinkScore(0);                        // stop score blinking
-ShowLampPatterns(0);                  // stop lamp animations
-    KillAllTimers();
-BallWatchdogTimer = 0;
-CheckReleaseTimer = 0;
-    LampPattern = NoLamps;                            // Turn off all lamps
-    ReleaseAllSolenoids();
-    if (!QuerySwitch(73)) { // Up/Down switch pressed?
-      WriteUpper("  TEST  MODE    ");
-      WriteLower("                ");
-      AppByte = 0;
-      ActivateTimer(1000, 0, TT_Testmode);}
-    else {
-      Settings_Enter();}
-break;
-case 3:                                       // start game
-TT_InitGame();}}
+        switch (Button) {
+            case 8:                                       // high score reset
+                digitalWrite(Blanking, LOW);          // invoke the blanking
+                break;
+            case TT_OutholeSwitch:                        // outhole
+                ActivateTimer(200, 0, TT_CheckForLockedBalls); // check again in 200ms
+                break;
+            case 72:                                      // Service Mode
+                BlinkScore(0);                        // stop score blinking
+                ShowLampPatterns(0);                  // stop lamp animations
+                KillAllTimers();
+                BallWatchdogTimer = 0;
+                CheckReleaseTimer = 0;
+                LampPattern = NoLamps;                            // Turn off all lamps
+                ReleaseAllSolenoids();
+                if (!QuerySwitch(73)) { // Up/Down switch pressed?
+                    WriteUpper("  TEST  MODE    ");
+                      WriteLower("                ");
+                      AppByte = 0;
+                      ActivateTimer(1000, 0, TT_Testmode);}
+                else {
+                  Settings_Enter();}
+                break;
+            case 3:                                       // start game
+                TT_InitGame();}}
 
 Cette fonction ne réagi qu'a 4 contacts. Le contact 8 qui est le bouton "highscore (pour les system 7-11)" il active le blanking quand on appuie dessus ce qui arrête, afficheurs, lampes et bobines. (voir section 2.3 pour plus d'informations).
 
