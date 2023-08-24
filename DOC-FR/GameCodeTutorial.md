@@ -141,24 +141,24 @@ Avec tout ce que nous avons ajouté, votre programme devrait ressembler à ceci 
 
 Dans cet exemple la lampe 53 est allumée en continue pendant que la lampe 54 clignote toute les 250ms (4 fois par seconde)
 
-### 2.2 Les contacts
+### 2.2 Les switchs
 
-APC propose deux manières d'utiliser les contacts. Vous pouvez utiliser
+APC propose deux manières d'utiliser les switchs. Vous pouvez utiliser
 
     QuerySwitch(SwitchNumber);
 
-pour connecter l'état du contact sélectionne. La valeur 'true' sera retournée si le contact est actif.
+pour connecter l'état du switch sélectionne. La valeur 'true' sera retournée si le switch est actif.
 
-La deuxième méthode est d'utiliser une fonction qui sera appelée quand un contact sera activé ou relâché. Pour le moment nous souhaitons effectuer une action quand un contact est activé
+La deuxième méthode est d'utiliser une fonction qui sera appelée quand un switch sera activé ou relâché. Pour le moment nous souhaitons effectuer une action quand un switch est activé
 
     Switch_Pressed = TT_TestSW;
     Switch_Released = DummyProcess;
 
-Si un contact est activé, la focntion TT_TestSW sera appelée avec le numéro du contact en argument. Comme nous ne souhaitons pas effectuer d'actions lorsqu'un contact est relâché, nous faisons pointer Switch_Released vers DummyProcess qui ne fait absolument rien.
+Si un switch est activé, la focntion TT_TestSW sera appelée avec le numéro du switch en argument. Comme nous ne souhaitons pas effectuer d'actions lorsqu'un switch est relâché, nous faisons pointer Switch_Released vers DummyProcess qui ne fait absolument rien.
 
 ### 2.3 Les Solenoides
 
-Pour commencer, nous allons faire fonction les cibles tombantes de mon Rollergames. La fonction de gestion des contacts ressemblera à ça :
+Pour commencer, nous allons faire fonction les cibles tombantes de mon Rollergames. La fonction de gestion des switchs ressemblera à ça :
 
     void TT_TutorialSW(byte SwitchNo) {
         switch (SwitchNo) {
@@ -180,18 +180,18 @@ Pour commencer, nous allons faire fonction les cibles tombantes de mon Rollergam
                     TurnOffLamp(50);
                     TurnOffLamp(51);}}}
 
-Chaque fois qu'un contacte est activé, la fonction TT_TutorialSW sera appelée avec en paramètre le numéro du contact en question. C'est un bon moyen pour centraliser l'état des contacts dans un switch/case.
+Chaque fois qu'un switche est activé, la fonction TT_TutorialSW sera appelée avec en paramètre le numéro du switch en question. C'est un bon moyen pour centraliser l'état des switchs dans un switch/case.
 
-Pour la présence du contact 8, il n'a rien a voir avec les cibles, il sert juste a préserver les lampes. Si vous téléversez un nouveau programme dans l'Arduino, il se peu que les afficheurs et les lampes aient une luminosité plus importante que d'habitude pendant un court instant. Cela ne devrait rien endommager, mais pour prévenir cela pressez le bouton "High Score Reset" avant d'envoyer le nouveau programme. Cela invoquera le blanking qui éteindra toutes les lampes et bobines.
+Pour la présence du switch 8, il n'a rien a voir avec les cibles, il sert juste a préserver les lampes. Si vous téléversez un nouveau programme dans l'Arduino, il se peu que les afficheurs et les lampes aient une luminosité plus importante que d'habitude pendant un court instant. Cela ne devrait rien endommager, mais pour prévenir cela pressez le bouton "High Score Reset" avant d'envoyer le nouveau programme. Cela invoquera le blanking qui éteindra toutes les lampes et bobines.
 
-La partie la plus importante dans ce code est la gestion des contacts 49, 50 et 51. Dans le RollerGames ces contacts sont situés sous les cibles tombantes et leur numéro correspond également au numéro des lampes présentes devant celles-ci. Dans mon cas je vérifie juste pour chaque cible quel contact est actif et j'allume la lampe correspondante. Si toutes les cibles sont baissées alors j'éteins les trois lampes et j'active la bobine permettant de remonter les cibles.
+La partie la plus importante dans ce code est la gestion des switchs 49, 50 et 51. Dans le RollerGames ces switchs sont situés sous les cibles tombantes et leur numéro correspond également au numéro des lampes présentes devant celles-ci. Dans mon cas je vérifie juste pour chaque cible quel switch est actif et j'allume la lampe correspondante. Si toutes les cibles sont baissées alors j'éteins les trois lampes et j'active la bobine permettant de remonter les cibles.
 
-Si votre flipper a aussi des cibles tombantes vous n'avez qu'a changer les numéros des contacts et de la bobine et tester ce code. Attention a vos doigts car elles remontent immédiatement une fois la dernière tombée.
+Si votre flipper a aussi des cibles tombantes vous n'avez qu'a changer les numéros des switchs et de la bobine et tester ce code. Attention a vos doigts car elles remontent immédiatement une fois la dernière tombée.
 
 ### 2.3 Les Timers
 
 
-Maintenant, supposons que nous voulions avoir des cibles tombantes chronométrées. La plupart des machines avec des cibles chronométrées ont une lampe clignotante à proximité pour indiquer qu'il faut rapidement les toucher avant le temps imparti. Le jeu Rollergames n'en a pas, mais j'attribue simplement cette tâche à la lampe 53. Cela modifie ma fonction de gestion des contacts :
+Maintenant, supposons que nous voulions avoir des cibles tombantes chronométrées. La plupart des machines avec des cibles chronométrées ont une lampe clignotante à proximité pour indiquer qu'il faut rapidement les toucher avant le temps imparti. Le jeu Rollergames n'en a pas, mais j'attribue simplement cette tâche à la lampe 53. Cela modifie ma fonction de gestion des switchs :
 
     void TT_TutorialSW(byte SwitchNo) {
 static byte DropTimer = 0;
@@ -223,7 +223,7 @@ Dans cet exemple, j'utilise un minuteur pour remonter les cibles 5 secondes apr�
 
     DropTimer = ActivateTimer(5000, 100, TT_TutorialSW);}} // start timer for 5s
 
-Dans cette ligne, un minuteur est activé pour 5 secondes. Après ce temps, TT_TutorialSW sera appelé avec comme argument la valeur 100 (j'ai choisi cette valeur car il n'y a pas de contact ayant ce numéro). Quand cet évènement ce produira, la variable DropTimer sera remise à zéro pour indiquer qu'il n'y a plus de minuteur ne cours ce qui signifie aussi que toutes les cibles sont en haut. Ensuite la lampe 53 est éteinte et je remonte les cibles.
+Dans cette ligne, un minuteur est activé pour 5 secondes. Après ce temps, TT_TutorialSW sera appelé avec comme argument la valeur 100 (j'ai choisi cette valeur car il n'y a pas de switch ayant ce numéro). Quand cet évènement ce produira, la variable DropTimer sera remise à zéro pour indiquer qu'il n'y a plus de minuteur ne cours ce qui signifie aussi que toutes les cibles sont en haut. Ensuite la lampe 53 est éteinte et je remonte les cibles.
 
 Si les cibles sont atteintes dans les 5 secondes par le joueur, elles doivent être remontrée et le minuteur désactivé. Pour le désactiver il vous faut son identifiant qui est retourné par la fonction ActiveTimer à son initialisation. Dans ce cas, cet identifiant est stocké dans la variable DropTimer et la commande KillTomer(DropTimer) est utilisée pour le détruire.
 
@@ -340,13 +340,13 @@ Comme l'identifiant du minuteur n'est pas stocké, le seul moyen de l'arrêter e
 
 L'utilisation de KillAllTimers a tout de même un gros inconvénient. La plupart de ces processus utilisent des variables statiques pour stocker l'identifiant du minuteur. Si le minuteur est tué sans que le processus en soit informé, la variable statique conservera toujours l'identifiant d'un minuteur qui n'existe plus. Si, pour une raison quelconque, on ordonne maintenant au processus de s'arrêter, il pourrait essayer de le tuer. Si vous avez de la chance, cela conduira simplement à une Erreur 11, ce qui signifie que vous avez essayé de tuer un minuteur qui n'est pas utilisé. Mais si le minuteur correspondant est maintenant utilisé par un autre processus, il sera tué, ce qui peut entraîner toutes sortes de problèmes difficiles à suivre. Pour cette raison, vous devez savoir quel processus utilise les minuteurs à quelle phase du jeu, et vous devez prendre une Erreur 11 très au sérieux lorsqu'elle se produit, car cela signifie que vous avez perdu la trace de vos minuteurs. Une Erreur 11 figera le jeu en mode débogage ; lorsque le paramètre "Mode de débogage" est réglé sur "non", l'erreur s'affichera simplement sur les affichages pendant quelques secondes, mais le jeu se poursuivra.
 
-### 3.3 Attract mode avec gestion des contacts
+### 3.3 Attract mode avec gestion des switchs
 
-Maintenant vous connaissez la procédure pour faire des animations de lampes et afficher pendant l'attrac mode, mais comment en sorti ? Pour cela nous avons besoin d'une d'une fonction de gestion des contacts. Dans la fonction TT_AttractMode() nous avons défini :
+Maintenant vous connaissez la procédure pour faire des animations de lampes et afficher pendant l'attrac mode, mais comment en sorti ? Pour cela nous avons besoin d'une d'une fonction de gestion des switchs. Dans la fonction TT_AttractMode() nous avons défini :
 
     Switch_Pressed = TT_AttractModeSW;
 
-qui signifiqe que cette fonction sera appelée quand un contact sera activé. La fonction ressemble à ca :
+qui signifiqe que cette fonction sera appelée quand un switch sera activé. La fonction ressemble à ca :
 
     void TT_AttractModeSW(byte Button) {              // Attract Mode switch behaviour
         switch (Button) {
@@ -375,13 +375,13 @@ qui signifiqe que cette fonction sera appelée quand un contact sera activé. La
             case 3:                                       // start game
                 TT_InitGame();}}
 
-Cette fonction ne réagi qu'a 4 contacts. Le contact 8 qui est le bouton "highscore (pour les system 7-11)" il active le blanking quand on appuie dessus ce qui arrête, afficheurs, lampes et bobines. (voir section 2.3 pour plus d'informations).
+Cette fonction ne réagi qu'a 4 switchs. Le switch 8 qui est le bouton "highscore (pour les system 7-11)" il active le blanking quand on appuie dessus ce qui arrête, afficheurs, lampes et bobines. (voir section 2.3 pour plus d'informations).
 
-Le prochain contact est activé quand une bille arrive arrive dans le outhole, qui sera ensuite envoyée dans le chargeur.
+Le prochain switch est activé quand une bille arrive arrive dans le outhole, qui sera ensuite envoyée dans le chargeur.
 
-Le contact 72 est le bouton Advance qui sert a lancer les tests ou paramétrer le flipper suivant la position du bouton Up/Down. 
-Notez que les commandes BlinkScore et ShowLampPatterns sont appelées avant que la commande KillAllTimers ne soit exécutée. Cela est lié à ce que j'ai écrit dans la section précédente. Assurez vous également d'appeler ReleaseAllSolenoids après avoir utilisé KillAllTimers, car cela tuera également les minuteurs de relâchement pour les solénoïdes. Ensuite, suivant l'état du contact 73, nous lançons le mode Test ou Paramètres du jeu.
+Le switch 72 est le bouton Advance qui sert a lancer les tests ou paramétrer le flipper suivant la position du bouton Up/Down. 
+Notez que les commandes BlinkScore et ShowLampPatterns sont appelées avant que la commande KillAllTimers ne soit exécutée. Cela est lié à ce que j'ai écrit dans la section précédente. Assurez vous également d'appeler ReleaseAllSolenoids après avoir utilisé KillAllTimers, car cela tuera également les minuteurs de relâchement pour les solénoïdes. Ensuite, suivant l'état du switch 73, nous lançons le mode Test ou Paramètres du jeu.
 
-Le contact 3 est le bouton "start". Il appellera la fonction InitGame qui effectuera toutes les étapes nécessaires pour initialiser le jeu et mettre une bille dans la rampe de lancement. Il se passe ici des choses assez complexes, mais pour le moment, il vous suffit de savoir que lorsque le jeu est en cours et qu'un contact est activé, la fonction TT_GameMain est appelée. Comme vous pouvez le voir, j'ai déjà inséré la gestion de nos cibles tombantes des sections précédentes aux contacts 49, 50 et 51 (pour le jeu Rollergames, ils sont probablement différents pour votre machine). Cela signifie que vous devriez être capable de lancer une bille et de viser les cibles tombantes.
+Le switch 3 est le bouton "start". Il appellera la fonction InitGame qui effectuera toutes les étapes nécessaires pour initialiser le jeu et mettre une bille dans la rampe de lancement. Il se passe ici des choses assez complexes, mais pour le moment, il vous suffit de savoir que lorsque le jeu est en cours et qu'un switch est activé, la fonction TT_GameMain est appelée. Comme vous pouvez le voir, j'ai déjà inséré la gestion de nos cibles tombantes des sections précédentes aux switchs 49, 50 et 51 (pour le jeu Rollergames, ils sont probablement différents pour votre machine). Cela signifie que vous devriez être capable de lancer une bille et de viser les cibles tombantes.
 
 J'espère que vous avez eu un aperçu général de la manière dont fonctionne le développement de l'APC. Si vous souhaitez développer votre jeu, n'hésitez pas à poser vos questions sur l'un des forums mentionnés sur la page principale du projet. Je suis prêt à développer cette documentation en cas de besoin, mais pour le moment, la plupart des gens semblent intéressés par l'utilisation de l'APC avec PinMame et MPF, donc je me concentre sur cela pour le moment.

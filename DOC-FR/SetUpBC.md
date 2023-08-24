@@ -8,11 +8,11 @@ Pour y arriver, appuyez sur le bouton Advance tout en exécutant le code de base
 
 | Numéro | Texte  | Item Nr | Item Text | Default | Comment |
 |--|--|--|--|--|--|
-| 0 | Outhole Switch | - | - | 9 | Entier - Numéro du contact Outhole |
-| 1 | Ball Thru 1 | - | - | 13 | Entier - Numéro du contact 1st Ball Through  |
-| 2 | Ball Thru 2 | - | - | 12 | Entier - Numéro du contact  2nd Ball Through, si présent |
-| 3 | Ball Thru 3 | - | - | 11 | Entier - Numéro du contact  3rd Ball Through, si présent |
-| 4 | Plunger Ln Sw | - | - | 20 | Entier - Numéro du contact de la rampe de lancement |
+| 0 | Outhole Switch | - | - | 9 | Entier - Numéro du switch Outhole |
+| 1 | Ball Thru 1 | - | - | 13 | Entier - Numéro du switch 1st Ball Through  |
+| 2 | Ball Thru 2 | - | - | 12 | Entier - Numéro du switch  2nd Ball Through, si présent |
+| 3 | Ball Thru 3 | - | - | 11 | Entier - Numéro du switch  3rd Ball Through, si présent |
+| 4 | Plunger Ln Sw | - | - | 20 | Entier - Numéro du switch de la rampe de lancement |
 | 5 | AC Sel Relay | - | - | 12 | Entier - Numéro du relai A/C, mettre a zéro si < system11 |
 | 6 | Outhole Kicker | - | - | 1 | Entier - Numéro de la bobine Outhole Kicker |
 | 7 | Shooter Ln Feed | - | - | 2 | Entier - Numéro de la bobine Shooter Lane Feeder |

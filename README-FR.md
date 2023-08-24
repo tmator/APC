@@ -15,7 +15,7 @@ L'APC est une carte programmable, pour les flippers Williams. Elle utilise un Ar
 * Supporte tous les types d'affichages
 * 24drivers  solénoïdes
 * Matrice de 64 lampes
-* Matrice de 64 contacts + 8 contacts autre
+* Matrice de 64 switchs + 8 switchs autre
 * Carte SD (pour stocker les fichiers audio, les paramètres et les scores)
 * Amplificateur audio 2 cannaux (pour jouer simultanément la musique et les effets sonores / ou jouer en stéréo)
 
