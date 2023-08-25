@@ -38,15 +38,16 @@ Une valeur de "throttle" est spécifiée pour chaque jeu. Changer cette valeur p
 
 ### Le son et PinMame
 
-When you're not using an old audio board but you want the APC to do the audio instead, then you need to have the necessary sound files. Check the table on the [PinMame Sound](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMame.md) page to see whether your game is already supported and the audio files are available. If your game is listet here, you can simply request the files and put them on the SD card on the APC board (not the one of the Pi). That's it, have fun.  
-If your game is not yet supported or you want to change the sounds (or even rules) then read the [PinMame howto](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMame_howto.md).
+Quand vous n'utilisez pas la carte son d'origine (sur les modèles ou c'est possible) et que vous souhaitez gérer le son via la carte APC, vous devez disposer des fichiers son. Regardez le tableur sur la [page PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMame.md) afin de savoir si le pack de son est disponible pour votre flipper. Si il est listé vous n'avez qu'a demander les fichiers et les placer sur la carte SD (pas celle du Raspberry Pi).
+Si il est pas encore supporté ou que vous souhaitez changer le son (ou même les règles) alors lisez la [documentation sur PinMame](https://github.com/AmokSolderer/APC/blob/master/DOC/PinMame_howto.md).
 
 ## MPF
 
-If you want to do your own rules without having to program in C, the [Mission Pinball Framework](http://missionpinball.org/) might be your method of choice. It can run on a PC which then controls the APC via USB. You'd have to select 'Remote Control' as the Active Game and  'Connect Type' to 'USB' in the [System Settings](https://github.com/AmokSolderer/APC/blob/master/DOC/Settings.md#system-settings).  
-We can also let Lisy run MPF which would then work without a PC, but we'd do this only on request.
 
-Here you can find my basic [MPF setup](https://github.com/AmokSolderer/APC/tree/master/DOC/Software/MPF)
+Si vous souhaitez créer vos propres règles sans avoir à programmer en C, le [Framework MPF](http://missionpinball.org/) est un bon choix. Il peut s'exécuter sur un PC qui contrôle ensuite l'APC via USB. Vous devez sélectionner 'Remote Control' en tant que jeu actif et 'Connect Type' sur 'USB' dans le [Paramètres systèmes](https://github.com/AmokSolderer/APC/blob/master/DOC/Settings.md#system-settings).  
+Nous pouvons également faire en sorte que Lisy exécute MPF, ce qui fonctionnerait sans PC, mais nous le ferions uniquement sur demande.
+
+Vous pouvez trouver ma configuration de base de [MPF ici](https://github.com/AmokSolderer/APC/tree/master/DOC/Software/MPF)
 
 ## C code
 
